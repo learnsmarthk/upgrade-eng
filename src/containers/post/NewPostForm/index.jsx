@@ -14,7 +14,6 @@ const NewPostForm = () => {
       return toast.error("Please fill in all fields");
     }
 
-    console.log({ inputTitle, inputBody, inputAnswer });
     onCreatePost({
       title: inputTitle,
       body: inputBody,

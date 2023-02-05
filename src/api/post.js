@@ -31,4 +31,11 @@ const createPost = async ({ title, body, answer }) => {
   return res;
 };
 
-export { getAllPosts, updatePost, createPost };
+const deletePost = async (postId) => {
+  const res = await postApi.delete(`/delete?postId=${postId}`);
+
+  console.log(res);
+  return res;
+};
+
+export { getAllPosts, updatePost, createPost, deletePost };

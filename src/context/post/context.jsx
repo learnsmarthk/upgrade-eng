@@ -1,11 +1,12 @@
 import { createContext, useMemo } from "react";
 import { useMutation } from "react-query";
-import { updatePost, createPost } from "@/api/post";
+import { updatePost, createPost, deletePost } from "@/api/post";
 import { toast } from "react-hot-toast";
 
 export const PostContext = createContext({
   onUpdatePost: () => {},
   onCreatePost: () => {},
+  onDeletePost: () => {},
 });
 
 export const PostProvider = ({ children }) => {
@@ -19,7 +20,14 @@ export const PostProvider = ({ children }) => {
   // Create post
   const { mutate: onCreatePost } = useMutation(createPost, {
     onSuccess: () => {
-      toast.success("Post updated!");
+      toast.success("Post created!");
+    },
+  });
+
+  // Delete post
+  const { mutate: onDeletePost } = useMutation(deletePost, {
+    onSuccess: () => {
+      toast.success("Post deleted!");
     },
   });
 
@@ -28,8 +36,9 @@ export const PostProvider = ({ children }) => {
     () => ({
       onUpdatePost,
       onCreatePost,
+      onDeletePost,
     }),
-    [onUpdatePost, onCreatePost]
+    [onUpdatePost, onCreatePost, onDeletePost]
   );
 
   return (

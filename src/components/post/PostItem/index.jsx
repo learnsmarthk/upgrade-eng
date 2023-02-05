@@ -1,11 +1,11 @@
 import React, { useState, useContext } from "react";
 
-import { AiFillEdit } from "@/components/icons";
-import { Button, InputForm } from "@/components";
+import { AiFillEdit, FaTrashAlt } from "@/components/icons";
+import { Button, IconButton, InputForm } from "@/components";
 import { PostContext } from "@/context/post/context";
 
-const PostItem = ({ postId, title, body, answer, mutateFn }) => {
-  const { onUpdatePost } = useContext(PostContext);
+const PostItem = ({ postId, title, body, answer }) => {
+  const { onUpdatePost, onDeletePost } = useContext(PostContext);
 
   const [editPost, setEditPost] = useState(false);
   const [inputTitle, setInputTitle] = useState(title || "");
@@ -19,6 +19,10 @@ const PostItem = ({ postId, title, body, answer, mutateFn }) => {
       body: inputBody,
       answer: inputAnswer,
     });
+  };
+
+  const onDeletePostHandler = () => {
+    onDeletePost(postId);
   };
 
   return (
@@ -57,11 +61,17 @@ const PostItem = ({ postId, title, body, answer, mutateFn }) => {
       {/* Post edit button */}
       <button
         onClick={() => setEditPost((prev) => !prev)}
-        className="flex gap-1 justify-center items-center absolute top-0 right-0"
+        className="flex gap-1 justify-center items-center absolute top-2 right-5"
       >
         <AiFillEdit />
         <span>Edit</span>
       </button>
+      <IconButton
+        onClick={onDeletePostHandler}
+        styles="flex gap-1 justify-center items-center absolute bottom-3 right-5"
+      >
+        <FaTrashAlt />
+      </IconButton>
 
       {/* Confirm button */}
       {editPost && (
