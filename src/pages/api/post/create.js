@@ -1,18 +1,21 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
-import prisma from "../../../prisma/client";
+import prisma from "../../../../prisma/client";
 
 export default async function handler(req, res) {
-  console.log(req.body);
   if (req.method === "POST") {
+    const { title, body, answer } = req.body;
+
     try {
-      // Get prisma to fetch posts
-      const data = await prisma.user.create({
+      // Create Post
+      const data = await prisma.post.create({
         data: {
-          email: req.body.email,
-          name: req.body.name,
+          title,
+          body,
+          answer,
         },
       });
+
       return res.status(200).json(data);
     } catch (e) {
       return res.status(500).json(e);
