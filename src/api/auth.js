@@ -11,7 +11,7 @@ export const loginRequest = async (username, password) => {
       },
     });
 
-    console.log(res);
+    // console.log(res);
   } catch (e) {
     console.log(e);
   }

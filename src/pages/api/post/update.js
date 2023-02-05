@@ -7,6 +7,7 @@ export default async function handler(req, res) {
     // Get postId from request url /update?postId=xxx
     const { postId } = req.query;
     const { title, body, answer } = req.body;
+    console.log(req.body);
 
     try {
       // Create Post

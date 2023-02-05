@@ -1,12 +1,22 @@
-import Head from "next/head";
+import { useState } from "react";
 
-import { LoginForm } from "@/containers";
-import { ContentWrapper } from "@/components";
+import { ContentWrapper, Button } from "@/components";
+import { NewPostForm, PostList } from "@/containers";
 
 export default function Home() {
+  const [showNewPostForm, setShowNewPostForm] = useState(false);
+
   return (
-    <>
-      <main className="w-screen h-screen">Main page</main>
-    </>
+    <main className="relative w-screen h-screen">
+      <ContentWrapper>
+        <NewPostForm />
+        <PostList />
+
+        {/* Add post button */}
+        <div className="absolute bottom-5 right-5">
+          <Button>Add Post</Button>
+        </div>
+      </ContentWrapper>
+    </main>
   );
 }
