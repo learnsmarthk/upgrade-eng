@@ -1,17 +1,11 @@
 import React from "react";
-import { useQuery } from "react-query";
 
-import queryKey from "@/utils/query/queryKey";
-
-import { getAllPosts } from "@/api/post";
 import { PostItem } from "@/components";
 
-const PostList = () => {
-  const { data } = useQuery(queryKey.getAllPost, getAllPosts);
-
+const PostList = ({ posts }) => {
   return (
-    <div className="flex flex-col">
-      {data?.map(({ id, title, body, answer }) => (
+    <div className="flex flex-col py-10">
+      {posts?.map(({ id, title, body, answer }) => (
         <PostItem
           key={id}
           postId={id}

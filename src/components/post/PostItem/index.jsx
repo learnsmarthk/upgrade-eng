@@ -19,6 +19,7 @@ const PostItem = ({ postId, title, body, answer }) => {
       body: inputBody,
       answer: inputAnswer,
     });
+    setEditPost(false);
   };
 
   const onDeletePostHandler = () => {
@@ -31,8 +32,10 @@ const PostItem = ({ postId, title, body, answer }) => {
     "
     >
       <div className="flex flex-col gap-3 mb-8">
-        <div className="flex flex-col gap-1 relative">
-          <span className="sm:text-sm md:text-xl  font-semibold">Title:</span>
+        <div className="flex flex-col ">
+          <span className="sm:text-sm md:text-xl font-semibold mb-1">
+            Title:
+          </span>
           {editPost ? (
             <InputForm value={inputTitle} setFn={setInputTitle} />
           ) : (
@@ -40,7 +43,9 @@ const PostItem = ({ postId, title, body, answer }) => {
           )}
         </div>
         <div className="flex-wrap">
-          <span className="sm:text-sm md:text-xl font-semibold">Body:</span>
+          <span className="sm:text-sm md:text-xl font-semibold mb-1">
+            Body:
+          </span>
           {editPost ? (
             <InputForm textArea value={inputBody} setFn={setInputBody} />
           ) : (
@@ -49,7 +54,9 @@ const PostItem = ({ postId, title, body, answer }) => {
         </div>
 
         <div className="flex-wrap">
-          <span className="sm:text-sm md:text-xl  font-semibold">Answer:</span>
+          <span className="sm:text-sm md:text-xl  font-semibold mb-1">
+            Answer:
+          </span>
           {editPost ? (
             <InputForm textArea value={inputAnswer} setFn={setInputAnswer} />
           ) : (
@@ -59,30 +66,36 @@ const PostItem = ({ postId, title, body, answer }) => {
       </div>
 
       {/* Post edit button */}
-      <button
-        onClick={() => setEditPost((prev) => !prev)}
-        className="flex gap-1 justify-center items-center absolute top-2 right-5"
-      >
-        <AiFillEdit />
-        <span>Edit</span>
-      </button>
-      <IconButton
-        onClick={onDeletePostHandler}
-        styles="flex gap-1 justify-center items-center absolute bottom-3 right-5"
-      >
-        <FaTrashAlt />
-      </IconButton>
+
+      {!editPost && (
+        <button
+          onClick={() => setEditPost((prev) => !prev)}
+          className="flex gap-1 justify-center items-center absolute top-2 right-5"
+        >
+          <AiFillEdit />
+          <span>Edit</span>
+        </button>
+      )}
 
       {/* Confirm button */}
       {editPost && (
-        <div className=" flex gap-2 self-end">
-          <Button onClick={() => setEditPost((prev) => !prev)}>Cancel</Button>
-          <Button
-            onClick={updatePostHandler}
-            className="flex gap-1 justify-center items-center "
+        <div className=" flex items-center justify-between">
+          {/* Delete btn */}
+          <IconButton
+            onClick={onDeletePostHandler}
+            styles="flex gap-1 justify-center items-center "
           >
-            Save
-          </Button>
+            <FaTrashAlt />
+          </IconButton>
+          <div className="flex gap-4">
+            <Button onClick={() => setEditPost((prev) => !prev)}>Cancel</Button>
+            <Button
+              onClick={updatePostHandler}
+              className="flex gap-1 justify-center items-center "
+            >
+              Save
+            </Button>
+          </div>
         </div>
       )}
     </div>

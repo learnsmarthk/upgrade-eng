@@ -4,7 +4,7 @@ const InputForm = ({ value, setFn, label, textArea = false }) => {
   if (textArea) {
     return (
       <div className="flex flex-col gap-1 text-gray-600 w-full">
-        {label && <span className="font-medium ">{label}</span>}
+        {label && <span className="font-medium">{label}</span>}
         <textarea
           value={value}
           onChange={(e) => setFn(e.target.value)}

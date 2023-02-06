@@ -27,14 +27,12 @@ const createPost = async ({ title, body, answer }) => {
     answer,
   });
 
-  console.log(res);
   return res;
 };
 
 const deletePost = async (postId) => {
   const res = await postApi.delete(`/delete?postId=${postId}`);
 
-  console.log(res);
   return res;
 };
 

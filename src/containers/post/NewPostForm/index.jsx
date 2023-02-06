@@ -4,7 +4,7 @@ import { InputForm, Button, Typography } from "@/components";
 import { PostContext } from "@/context/post/context";
 
 const NewPostForm = () => {
-  const { onCreatePost } = useContext(PostContext);
+  const { onCreatePost, setShowNewPostForm } = useContext(PostContext);
   const [inputTitle, setInputTitle] = useState("");
   const [inputBody, setInputBody] = useState("");
   const [inputAnswer, setInputAnswer] = useState("");
@@ -49,7 +49,7 @@ const NewPostForm = () => {
       {/* Confirm button */}
 
       <div className=" flex gap-2 self-end">
-        <Button>Cancel</Button>
+        <Button onClick={() => setShowNewPostForm(false)}>Cancel</Button>
         <Button
           onClick={onSubmitHandler}
           className="flex gap-1 justify-center items-center "
