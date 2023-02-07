@@ -6,6 +6,7 @@ import CustomHead from "./common/CustomHead";
 import PostItem from "./post/PostItem";
 import IconButton from "./common/IconButton";
 import Typography from "./common/Typography";
+import SwitchToggle from "./common/SwitchToggle";
 
 export {
   Button,
@@ -16,4 +17,5 @@ export {
   PostItem,
   IconButton,
   Typography,
+  SwitchToggle,
 };

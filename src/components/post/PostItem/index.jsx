@@ -1,15 +1,16 @@
 import React, { useState, useContext } from "react";
 
 import { AiFillEdit, FaTrashAlt } from "@/components/icons";
-import { Button, IconButton, InputForm } from "@/components";
+import { Button, IconButton, InputForm, SwitchToggle } from "@/components";
 import { PostContext } from "@/context/post/context";
 import { toast } from "react-hot-toast";
 
-const PostItem = ({ postId, body, createdAt }) => {
+const PostItem = ({ postId, body, createdAt, isPublic }) => {
   const { onUpdatePost, onDeletePost } = useContext(PostContext);
 
   const [editPost, setEditPost] = useState(false);
   const [inputBody, setInputBody] = useState(body || "");
+  const [inputIsPublic, setInputIsPublic] = useState(isPublic);
 
   const updatePostHandler = () => {
     if (!inputBody) return toast.error("Please fill in all fields");
@@ -17,6 +18,7 @@ const PostItem = ({ postId, body, createdAt }) => {
     onUpdatePost({
       postId,
       body: inputBody,
+      isPublic: inputIsPublic,
     });
     setEditPost(false);
   };
@@ -41,6 +43,23 @@ const PostItem = ({ postId, body, createdAt }) => {
             <p className="sm:text-sm md:text-base ">{body}</p>
           )}
         </div>
+
+        {editPost ? (
+          <SwitchToggle
+            enabled={inputIsPublic}
+            setEnabled={setInputIsPublic}
+            trueLabel="Public"
+            falseLabel="Private"
+          />
+        ) : (
+          <SwitchToggle
+            enabled={inputIsPublic}
+            trueLabel="Public"
+            falseLabel="Private"
+            editable={false}
+          />
+        )}
+
         <div className="flex flex-col gap-3 ">
           <span className="sm:text-xs text-gray-400 font-semibold self-end">
             created at: {createdAt?.split("T")[0]}
@@ -49,7 +68,6 @@ const PostItem = ({ postId, body, createdAt }) => {
       </div>
 
       {/* Post edit button */}
-
       {!editPost && (
         <button
           onClick={() => setEditPost((prev) => !prev)}

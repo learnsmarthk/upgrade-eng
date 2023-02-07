@@ -4,15 +4,14 @@ import prisma from "../../../../prisma/client";
 
 export default async function handler(req, res) {
   if (req.method === "POST") {
-    const { title, body, answer } = req.body;
+    const { body, isPublic } = req.body;
 
     try {
       // Create Post
       const data = await prisma.post.create({
         data: {
-          title,
+          isPublic,
           body,
-          answer,
         },
       });
 

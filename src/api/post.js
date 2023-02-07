@@ -1,7 +1,10 @@
 import axios from "axios";
 
+// const postApi = axios.create({
+//   baseURL: `${process.env.NEXT_PUBLIC_REACT_APP_API_URL}/post`,
+// });
 const postApi = axios.create({
-  baseURL: `${process.env.NEXT_PUBLIC_REACT_APP_API_URL}/post`,
+  baseURL: `api/post`,
 });
 
 const getAllPosts = async () => {
@@ -9,9 +12,10 @@ const getAllPosts = async () => {
   return res.data;
 };
 
-const updatePost = async ({ postId, body }) => {
+const updatePost = async ({ postId, body, isPublic }) => {
   const res = await postApi.patch(`/update?postId=${postId}`, {
     body,
+    isPublic,
   });
 
   return res;
