@@ -28,7 +28,7 @@ const PostItem = ({ postId, title, body, answer }) => {
 
   return (
     <div
-      className="relative flex flex-col  text-gray-700 p-5  my-2 border-2 border-gray-200 rounded-xl
+      className="relative flex flex-col  text-gray-700 p-5  my-2 border-2 border-gray-200 rounded-xl shadow-md hover:border-indigo-400 transition-all duration-300  
     "
     >
       <div className="flex flex-col gap-3 mb-8">

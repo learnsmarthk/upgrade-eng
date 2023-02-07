@@ -33,16 +33,30 @@ const NewPostForm = () => {
       <div className="flex flex-col gap-3 mb-8">
         <div className="flex flex-col gap-1 relative">
           <span className="sm:text-sm md:text-xl  font-semibold">Title:</span>
-          <InputForm value={inputTitle} setFn={setInputTitle} />
+          <InputForm
+            placeholder="Type your title..."
+            value={inputTitle}
+            setFn={setInputTitle}
+          />
         </div>
         <div className="flex-wrap">
           <span className="sm:text-sm md:text-xl font-semibold">Body:</span>
-          <InputForm textArea value={inputBody} setFn={setInputBody} />
+          <InputForm
+            placeholder="Type your body..."
+            textArea
+            value={inputBody}
+            setFn={setInputBody}
+          />
         </div>
 
         <div className="flex-wrap">
           <span className="sm:text-sm md:text-xl  font-semibold">Answer:</span>
-          <InputForm textArea value={inputAnswer} setFn={setInputAnswer} />
+          <InputForm
+            placeholder="Type your answer..."
+            textArea
+            value={inputAnswer}
+            setFn={setInputAnswer}
+          />
         </div>
       </div>
 

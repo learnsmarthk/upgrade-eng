@@ -1,4 +1,6 @@
 import React from "react";
+import { authOptions } from "./api/auth/[...nextauth]";
+import { getServerSession } from "next-auth";
 
 import { ContentWrapper, CustomHead } from "@/components";
 import { LoginForm } from "@/containers";
@@ -17,5 +19,23 @@ const AuthPage = () => {
     </>
   );
 };
+
+export async function getServerSideProps(context) {
+  const session = await getServerSession(context.req, context.res, authOptions);
+
+  if (session) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+
+  // nothing to return
+  return {
+    props: {},
+  };
+}
 
 export default AuthPage;

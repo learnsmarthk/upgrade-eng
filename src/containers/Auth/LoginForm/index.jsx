@@ -32,23 +32,35 @@ const LoginForm = () => {
   };
 
   const onCancelHandler = () => {
-    toast.error("cancel!");
+    setPassword("");
+    setUsername("");
   };
 
   return (
-    <div className="flex flex-col m-auto w-full justify-center items-center">
+    <div className="flex flex-col m-auto p-6 justify-center items-center border-2 rounded-lg shadow-md">
       <h3 className="text-2xl font-medium">Sign in</h3>
       <form
         onSubmit={onSubmitHandler}
         className="flex m-auto w-full justify-center items-center"
       >
         <div className="flex flex-col items-center gap-2 w-80 p-3">
-          <InputForm value={username} setFn={setUsername} label="Username" />
-          <InputForm value={password} setFn={setPassword} label="Password" />
+          <InputForm
+            placeholder="Type your username"
+            value={username}
+            setFn={setUsername}
+            label="Username"
+          />
+          <InputForm
+            placeholder="Type your password"
+            type="password"
+            value={password}
+            setFn={setPassword}
+            label="Password"
+          />
           <div className="flex gap-2 mt-6">
             <Button type="submit">Sign In</Button>
             <Button type="button" onClick={onCancelHandler}>
-              Cancel
+              Clear
             </Button>
           </div>
         </div>

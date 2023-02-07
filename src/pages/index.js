@@ -4,10 +4,15 @@ import { ContentWrapper, Button } from "@/components";
 import { NewPostForm, PostList, TopBar } from "@/containers";
 import { usePost } from "@/hooks/usePost";
 import { PostContext } from "@/context/post/context";
+import { useSession } from "next-auth/react";
+import { authOptions } from "./api/auth/[...nextauth]";
+import { getServerSession } from "next-auth";
 
 export default function Home() {
   const { showNewPostForm, setShowNewPostForm } = useContext(PostContext);
   const { posts, searchTerm, setSearchTerm, searchRef } = usePost();
+  const session = useSession();
+  console.log(session);
 
   const onClickCreateBtn = () => {
     setShowNewPostForm(true);
@@ -34,4 +39,22 @@ export default function Home() {
       </ContentWrapper>
     </main>
   );
+}
+
+export async function getServerSideProps(context) {
+  const session = await getServerSession(context.req, context.res, authOptions);
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/auth",
+        permanent: false,
+      },
+    };
+  }
+
+  // nothing to return
+  return {
+    props: {},
+  };
 }
