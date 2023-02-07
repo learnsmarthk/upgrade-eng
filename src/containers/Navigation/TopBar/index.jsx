@@ -15,9 +15,10 @@ const TopBar = ({ setSearchTerm, searchRef }) => {
   };
 
   return (
-    <div className="bg-white z-10 p-5 shadow-lg rounded-lg w-full h-15 flex items-center">
+    <div className="sticky top-0 bg-white z-10 p-5 shadow-lg rounded-lg w-full h-15 flex items-center border-2 border-gray-200">
       <div className="flex gap-4 w-full">
         <input
+          placeholder="search..."
           ref={searchRef}
           className="w-full ring-2 rounded-sm py-2 px-3 outline-none focus:border-indigo-300 focus:ring-4 transition-all duration-150"
         />

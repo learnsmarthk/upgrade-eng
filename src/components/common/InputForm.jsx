@@ -5,6 +5,7 @@ const InputForm = ({
   setFn,
   label,
   textArea = false,
+  textAreaRow = 4, //number 1,2,3
   type = "text",
   placeholder = "",
 }) => {
@@ -16,6 +17,7 @@ const InputForm = ({
           placeholder={placeholder}
           type={type}
           value={value}
+          rows={textAreaRow}
           onChange={(e) => setFn(e.target.value)}
           className="w-full ring-2 rounded-sm py-2 px-3 outline-none focus:border-indigo-300 focus:ring-4 transition-all duration-150 "
         />

@@ -6,25 +6,20 @@ const postApi = axios.create({
 
 const getAllPosts = async () => {
   const res = await postApi.get("/getAll");
-
   return res.data;
 };
 
-const updatePost = async ({ postId, title, body, answer }) => {
+const updatePost = async ({ postId, body }) => {
   const res = await postApi.patch(`/update?postId=${postId}`, {
-    title,
     body,
-    answer,
   });
 
   return res;
 };
 
-const createPost = async ({ title, body, answer }) => {
+const createPost = async ({ body }) => {
   const res = await postApi.post(`/create`, {
-    title,
     body,
-    answer,
   });
 
   return res;

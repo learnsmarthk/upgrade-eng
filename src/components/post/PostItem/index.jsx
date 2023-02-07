@@ -3,21 +3,20 @@ import React, { useState, useContext } from "react";
 import { AiFillEdit, FaTrashAlt } from "@/components/icons";
 import { Button, IconButton, InputForm } from "@/components";
 import { PostContext } from "@/context/post/context";
+import { toast } from "react-hot-toast";
 
-const PostItem = ({ postId, title, body, answer }) => {
+const PostItem = ({ postId, body, createdAt }) => {
   const { onUpdatePost, onDeletePost } = useContext(PostContext);
 
   const [editPost, setEditPost] = useState(false);
-  const [inputTitle, setInputTitle] = useState(title || "");
   const [inputBody, setInputBody] = useState(body || "");
-  const [inputAnswer, setInputAnswer] = useState(answer || "");
 
   const updatePostHandler = () => {
+    if (!inputBody) return toast.error("Please fill in all fields");
+
     onUpdatePost({
       postId,
-      title: inputTitle,
       body: inputBody,
-      answer: inputAnswer,
     });
     setEditPost(false);
   };
@@ -28,21 +27,11 @@ const PostItem = ({ postId, title, body, answer }) => {
 
   return (
     <div
-      className="relative flex flex-col  text-gray-700 p-5  my-2 border-2 border-gray-200 rounded-xl shadow-md hover:border-indigo-400 transition-all duration-300  
+      className="relative flex flex-col  text-gray-700 p-5  my-2 border-2 border-gray-200 rounded-xl  hover:border-indigo-400 transition-all duration-300 bg-white shadow-md
     "
     >
       <div className="flex flex-col gap-3 mb-8">
-        <div className="flex flex-col ">
-          <span className="sm:text-sm md:text-xl font-semibold mb-1">
-            Title:
-          </span>
-          {editPost ? (
-            <InputForm value={inputTitle} setFn={setInputTitle} />
-          ) : (
-            <p className="sm:text-sm md:text-base ">{title}</p>
-          )}
-        </div>
-        <div className="flex-wrap">
+        <div className="flex-wrap mb-5">
           <span className="sm:text-sm md:text-xl font-semibold mb-1">
             Body:
           </span>
@@ -52,16 +41,10 @@ const PostItem = ({ postId, title, body, answer }) => {
             <p className="sm:text-sm md:text-base ">{body}</p>
           )}
         </div>
-
-        <div className="flex-wrap">
-          <span className="sm:text-sm md:text-xl  font-semibold mb-1">
-            Answer:
+        <div className="flex flex-col gap-3 ">
+          <span className="sm:text-xs text-gray-400 font-semibold self-end">
+            created at: {createdAt?.split("T")[0]}
           </span>
-          {editPost ? (
-            <InputForm textArea value={inputAnswer} setFn={setInputAnswer} />
-          ) : (
-            <p className="sm:text-sm md:text-base ">{answer}</p>
-          )}
         </div>
       </div>
 
@@ -83,12 +66,17 @@ const PostItem = ({ postId, title, body, answer }) => {
           {/* Delete btn */}
           <IconButton
             onClick={onDeletePostHandler}
-            styles="flex gap-1 justify-center items-center "
+            styles="flex gap-1 justify-center items-center h-9 w-9"
           >
-            <FaTrashAlt />
+            <FaTrashAlt style={{ fontSize: "1.2rem", color: "red" }} />
           </IconButton>
           <div className="flex gap-4">
-            <Button onClick={() => setEditPost((prev) => !prev)}>Cancel</Button>
+            <Button
+              variant="outlined"
+              onClick={() => setEditPost((prev) => !prev)}
+            >
+              Cancel
+            </Button>
             <Button
               onClick={updatePostHandler}
               className="flex gap-1 justify-center items-center "

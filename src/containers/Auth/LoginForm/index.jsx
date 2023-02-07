@@ -37,7 +37,7 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="flex flex-col m-auto p-6 justify-center items-center border-2 rounded-lg shadow-md">
+    <div className="flex flex-col m-auto p-6 justify-center items-center border-2 border-slate-400 rounded-lg shadow-lg bg-white drop-shadow-lg">
       <h3 className="text-2xl font-medium">Sign in</h3>
       <form
         onSubmit={onSubmitHandler}
@@ -59,7 +59,7 @@ const LoginForm = () => {
           />
           <div className="flex gap-2 mt-6">
             <Button type="submit">Sign In</Button>
-            <Button type="button" onClick={onCancelHandler}>
+            <Button variant="outlined" type="button" onClick={onCancelHandler}>
               Clear
             </Button>
           </div>

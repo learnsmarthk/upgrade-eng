@@ -9,7 +9,7 @@ const AuthPage = () => {
   return (
     <>
       <CustomHead title="Sign in" />
-      <main className="w-screen h-screen">
+      <main className="w-screen h-screen bg-gradient-to-br from-cyan-300  to-blue-500">
         <ContentWrapper>
           <div className="flex h-full w-full mt-auto mb-auto">
             <LoginForm />
