@@ -14,7 +14,7 @@ export default async function handler(req, res) {
       // Get prisma to fetch all questions
       const data = await prisma.post.findMany({
         where: {
-          public: true,
+          isPublic: true,
         },
       });
 

@@ -4,7 +4,9 @@ import axios from "axios";
 //   baseURL: `${process.env.NEXT_PUBLIC_REACT_APP_API_URL}/post`,
 // });
 const postApi = axios.create({
-  baseURL: `api/post`,
+  baseURL: `${
+    process.env.NODE_ENV === "development" ? "http://localhost:3000/" : ""
+  }api/post`,
 });
 
 const getAllPosts = async () => {
