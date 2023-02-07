@@ -23,9 +23,10 @@ const updatePost = async ({ postId, body, isPublic }) => {
   return res;
 };
 
-const createPost = async ({ body }) => {
+const createPost = async ({ body, isPublic }) => {
   const res = await postApi.post(`/create`, {
     body,
+    isPublic,
   });
 
   return res;

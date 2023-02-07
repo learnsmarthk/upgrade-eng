@@ -16,7 +16,6 @@ export const authOptions = {
       credentials: {},
       async authorize(credentials, req) {
         const { username, password } = credentials;
-        console.log({ username, password });
 
         if (!username || !password) {
           throw new Error("Not authorized");

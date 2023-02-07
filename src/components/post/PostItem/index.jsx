@@ -34,8 +34,8 @@ const PostItem = ({ postId, body, createdAt, isPublic }) => {
     >
       <div className="flex flex-col gap-3 mb-8">
         <div className="flex-wrap mb-5">
-          <span className="sm:text-sm md:text-xl font-semibold mb-1">
-            Body:
+          <span className="sm:text-sm md:text-xl font-semibold mb-4">
+            Question:
           </span>
           {editPost ? (
             <InputForm textArea value={inputBody} setFn={setInputBody} />

@@ -2,7 +2,7 @@ import React from "react";
 
 const Typography = ({
   children,
-  variant,
+  variant = "text",
   component,
   styles,
   ...otherProps

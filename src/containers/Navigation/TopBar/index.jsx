@@ -1,6 +1,6 @@
 import React from "react";
 import { signOut } from "next-auth/react";
-import { Button, IconButton } from "@/components";
+import { Button, IconButton, Typography } from "@/components";
 import { RiLogoutCircleRLine } from "@/components/icons";
 import Router from "next/router";
 
@@ -16,7 +16,7 @@ const TopBar = ({ setSearchTerm, searchRef }) => {
 
   return (
     <div className="sticky top-0 bg-white z-10 p-5 shadow-lg rounded-lg w-full h-15 flex items-center border-2 border-gray-200">
-      <div className="flex gap-4 w-full">
+      <div className="flex gap-4 w-full mr-auto">
         <input
           placeholder="search..."
           ref={searchRef}
@@ -27,9 +27,14 @@ const TopBar = ({ setSearchTerm, searchRef }) => {
           Search
         </Button>
       </div>
-      <IconButton styles="ml-10 h-10 w-10" onClick={signOutHandler}>
-        <RiLogoutCircleRLine style={{ fontSize: "2rem", color: "red" }} />
-      </IconButton>
+
+      <button
+        onClick={signOutHandler}
+        className="flex gap-2 ml-10 items-center w-28"
+      >
+        <Typography>Sign out</Typography>
+        <RiLogoutCircleRLine style={{ fontSize: "1.2rem", color: "red" }} />
+      </button>
     </div>
   );
 };
