@@ -71,7 +71,7 @@ const PostItem = ({ postId, body, createdAt, isPublic }) => {
       {!editPost && (
         <button
           onClick={() => setEditPost((prev) => !prev)}
-          className="flex gap-1 justify-center items-center absolute top-2 right-5"
+          className="flex gap-1 justify-center items-center absolute top-4 right-5"
         >
           <AiFillEdit />
           <span>Edit</span>

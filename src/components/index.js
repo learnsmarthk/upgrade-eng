@@ -7,6 +7,7 @@ import PostItem from "./post/PostItem";
 import IconButton from "./common/IconButton";
 import Typography from "./common/Typography";
 import SwitchToggle from "./common/SwitchToggle";
+import Spinner from "./common/Spinner";
 
 export {
   Button,
@@ -18,4 +19,5 @@ export {
   IconButton,
   Typography,
   SwitchToggle,
+  Spinner,
 };

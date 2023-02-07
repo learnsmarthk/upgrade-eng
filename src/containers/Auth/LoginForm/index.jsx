@@ -10,10 +10,13 @@ const LoginForm = () => {
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
 
+  const [isSigningIn, setIsSigningIn] = useState(false);
   const onSubmitHandler = async (e) => {
     e.preventDefault();
+    setIsSigningIn(true);
     if (!username || !password) {
       toast.error("Please provide username and password");
+      setIsSigningIn(false);
       return;
     }
 
@@ -24,10 +27,13 @@ const LoginForm = () => {
     });
 
     if (!res.ok) {
-      return toast.error("Wrong username or password.");
+      toast.error("Wrong username or password.");
+      setIsSigningIn(false);
+      return;
     } else {
       toast.success("Welcome back!");
       Router.replace("/");
+      setIsSigningIn(false);
     }
   };
 
@@ -57,9 +63,16 @@ const LoginForm = () => {
             setFn={setPassword}
             label="Password"
           />
-          <div className="flex gap-2 mt-6">
-            <Button type="submit">Sign In</Button>
-            <Button variant="outlined" type="button" onClick={onCancelHandler}>
+          <div className="flex h-10 gap-2 mt-6 w-full">
+            <Button styles="w-full" type="submit" isLoading={isSigningIn}>
+              Sign In
+            </Button>
+            <Button
+              styles="w-full"
+              variant="outlined"
+              type="button"
+              onClick={onCancelHandler}
+            >
               Clear
             </Button>
           </div>
