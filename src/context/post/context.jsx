@@ -2,13 +2,14 @@ import { createContext, useMemo, useState } from "react";
 import { useMutation } from "react-query";
 import { toast } from "react-hot-toast";
 
-import { updatePost, createPost, deletePost } from "@/api/post";
+import { updatePost, createPost, deletePost, createMany } from "@/api/post";
 import { useQueryClient } from "react-query";
 import queryKeys from "@/utils/query/queryKeys";
 
 export const PostContext = createContext({
   onUpdatePost: () => {},
   onCreatePost: () => {},
+  onCreateMany: () => {},
   onDeletePost: () => {},
   showNewPostForm: false,
   setShowNewPostForm: () => {},
@@ -37,10 +38,24 @@ export const PostProvider = ({ children }) => {
     },
   });
 
-  // Create post
+  // Create ONE post
   const { mutate: onCreatePost } = useMutation(createPost, {
     onSuccess: () => {
       toast.success("Post created!");
+      setShowNewPostForm(false);
+    },
+    onError: (e) => {
+      toast.error(`Error: ${e.message}`);
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries(queryKeys.getAllPost);
+    },
+  });
+
+  // Create MANY  post
+  const { mutate: onCreateMany } = useMutation(createMany, {
+    onSuccess: () => {
+      toast.success("Posts created!");
       setShowNewPostForm(false);
     },
     onError: (e) => {
@@ -71,6 +86,7 @@ export const PostProvider = ({ children }) => {
       setShowNewPostForm,
       searchTerm,
       setSearchTerm,
+      onCreateMany,
     }),
     [
       onUpdatePost,
@@ -80,6 +96,7 @@ export const PostProvider = ({ children }) => {
       setShowNewPostForm,
       searchTerm,
       setSearchTerm,
+      onCreateMany,
     ]
   );
 

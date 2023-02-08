@@ -19,7 +19,7 @@ export default async function handler(req, res) {
   if (req.method === "PATCH") {
     // Get postId from request url /update?postId=xxx
     const { postId } = req.query;
-    const { body, isPublic } = req.body;
+    const { question, isPublic } = req.body;
 
     try {
       // Create Post
@@ -28,7 +28,7 @@ export default async function handler(req, res) {
           id: postId,
         },
         data: {
-          body,
+          question,
           isPublic,
         },
       });

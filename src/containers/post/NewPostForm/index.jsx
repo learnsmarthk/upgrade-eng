@@ -6,15 +6,15 @@ import { PostContext } from "@/context/post/context";
 const NewPostForm = () => {
   const { onCreatePost, setShowNewPostForm } = useContext(PostContext);
   const [inputIsPublic, setInputIsPublic] = useState(true);
-  const [inputBody, setInputBody] = useState("");
+  const [inputQuestion, setInputQuestion] = useState("");
 
   const onSubmitHandler = () => {
-    if (!inputBody) {
+    if (!inputQuestion) {
       return toast.error("Please fill in all fields");
     }
 
     onCreatePost({
-      body: inputBody,
+      question: inputQuestion,
       isPublic: inputIsPublic,
     });
   };
@@ -31,12 +31,12 @@ const NewPostForm = () => {
       {/* Form inputs */}
       <div className="flex flex-col gap-3 mb-8">
         <div className="flex-wrap flex flex-col gap-3">
-          <span className="sm:text-sm md:text-xl font-semibold">Body:</span>
+          <span className="sm:text-sm md:text-xl font-semibold">Question:</span>
           <InputForm
-            placeholder="Type your body..."
+            placeholder="Type your question..."
             textArea
-            value={inputBody}
-            setFn={setInputBody}
+            value={inputQuestion}
+            setFn={setInputQuestion}
           />
         </div>
       </div>

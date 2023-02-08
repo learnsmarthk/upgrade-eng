@@ -1,36 +1,19 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 
 import { AiFillEdit, FaTrashAlt } from "@/components/icons";
 import { Button, IconButton, InputForm, SwitchToggle } from "@/components";
 import { PostContext } from "@/context/post/context";
 import { toast } from "react-hot-toast";
 
-const PostItem = ({ postId, question, createdAt, isPublic }) => {
-  const { onUpdatePost, onDeletePost } = useContext(PostContext);
-
+const PostPreviewItem = ({ question, isPublic }) => {
   const [editPost, setEditPost] = useState(false);
   const [inputQuestion, setInputQuestion] = useState(question || "");
   const [inputIsPublic, setInputIsPublic] = useState(isPublic);
 
-  const updatePostHandler = () => {
-    if (!inputQuestion) return toast.error("Please fill in all fields");
-
-    onUpdatePost({
-      postId,
-      question: inputQuestion,
-      isPublic: inputIsPublic,
-    });
-    setEditPost(false);
-  };
-
-  const onDeletePostHandler = () => {
-    onDeletePost(postId);
-  };
-
   return (
     <div
       className="relative flex flex-col  text-gray-700 p-5  my-2 border-2 border-gray-200 rounded-xl  hover:border-indigo-400 transition-all duration-300 bg-white shadow-md
-    "
+  "
     >
       <div className="flex flex-col gap-3 mb-8">
         <div className="flex-wrap mb-5">
@@ -113,4 +96,4 @@ const PostItem = ({ postId, question, createdAt, isPublic }) => {
   );
 };
 
-export default PostItem;
+export default PostPreviewItem;

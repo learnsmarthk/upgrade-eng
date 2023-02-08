@@ -3,10 +3,12 @@ import axios from "axios";
 // const postApi = axios.create({
 //   baseURL: `${process.env.NEXT_PUBLIC_REACT_APP_API_URL}/post`,
 // });
+
+const baseURL =
+  process.env.NODE_ENV === "development" ? "http://localhost:3000/" : "";
+
 const postApi = axios.create({
-  baseURL: `${
-    process.env.NODE_ENV === "development" ? "http://localhost:3000/" : ""
-  }api/post`,
+  baseURL: `${baseURL}api/post`,
 });
 
 const getAllPosts = async () => {
@@ -14,20 +16,30 @@ const getAllPosts = async () => {
   return res.data;
 };
 
-const updatePost = async ({ postId, body, isPublic }) => {
+const updatePost = async ({ postId, question, isPublic }) => {
   const res = await postApi.patch(`/update?postId=${postId}`, {
-    body,
+    question,
     isPublic,
   });
 
   return res;
 };
 
-const createPost = async ({ body, isPublic }) => {
+const createPost = async ({ question, isPublic }) => {
   const res = await postApi.post(`/create`, {
-    body,
+    question,
     isPublic,
   });
+
+  return res;
+};
+
+const createMany = async ({ questionsArray }) => {
+  const res = await postApi.post(`/createMany`, {
+    questionsArray,
+  });
+
+  console.log({ questionsArray, res });
 
   return res;
 };
@@ -38,4 +50,4 @@ const deletePost = async (postId) => {
   return res;
 };
 
-export { getAllPosts, updatePost, createPost, deletePost };
+export { getAllPosts, updatePost, createPost, deletePost, createMany };
