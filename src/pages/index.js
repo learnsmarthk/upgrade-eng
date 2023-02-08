@@ -1,11 +1,6 @@
 import { useContext, useState } from "react";
 
-import {
-  ContentWrapper,
-  Button,
-  PreviewPostModal,
-  AddPostListBtn,
-} from "@/components";
+import { ContentWrapper, PreviewPostModal, AddPostListBtn } from "@/components";
 import { NewPostForm, PostList, TopBar } from "@/containers";
 import { usePost } from "@/hooks/usePost";
 import { PostContext } from "@/context/post/context";
@@ -25,7 +20,7 @@ export default function Home() {
   };
 
   return (
-    <main className="relative bg-slate-50 pt-5">
+    <main className="relative bg-slate-50 pt-5 min-h-[100vh]">
       <ContentWrapper styles="relative">
         <TopBar
           searchRef={searchRef}
@@ -43,7 +38,7 @@ export default function Home() {
 
         {/* Add post button */}
         {!showNewPostForm && (
-          <div className="fixed bottom-20 right-20 ">
+          <div className="fixed bottom-10 right-20 ">
             <AddPostListBtn
               btn1Fn={onClickCreateBtn}
               btn2Fn={setShowPreviewModal}

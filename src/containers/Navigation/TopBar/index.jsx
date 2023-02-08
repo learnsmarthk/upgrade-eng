@@ -1,7 +1,7 @@
 import React from "react";
 import { signOut } from "next-auth/react";
-import { Button, Typography, IconButton } from "@/components";
-import { RiLogoutCircleRLine, RxCross2 } from "@/components/icons";
+import { Button, Typography } from "@/components";
+import { RiLogoutCircleRLine } from "@/components/icons";
 import Router from "next/router";
 
 const TopBar = ({ setSearchTerm, searchRef }) => {
@@ -38,7 +38,7 @@ const TopBar = ({ setSearchTerm, searchRef }) => {
 
       <button
         onClick={signOutHandler}
-        className="flex gap-2 ml-10 items-center w-28"
+        className="flex gap-2 ml-6 items-center rounded-full hover:bg-indigo-100 transition-all duration-300 py-1 px-2 w-[8rem]"
       >
         <Typography>Sign out</Typography>
         <RiLogoutCircleRLine style={{ fontSize: "1.2rem", color: "red" }} />

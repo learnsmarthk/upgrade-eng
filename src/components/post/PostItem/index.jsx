@@ -32,7 +32,7 @@ const PostItem = ({ postId, question, createdAt, isPublic }) => {
       className="relative flex flex-col  text-gray-700 p-5  my-2 border-2 border-gray-200 rounded-xl  hover:border-indigo-400 transition-all duration-300 bg-white shadow-md
     "
     >
-      <div className="flex flex-col gap-3 mb-8">
+      <div className="flex flex-col gap-3 ">
         <div className="flex-wrap mb-5">
           <span className="sm:text-sm md:text-xl font-semibold mb-4">
             Question:
@@ -76,7 +76,7 @@ const PostItem = ({ postId, question, createdAt, isPublic }) => {
       {!editPost && (
         <button
           onClick={() => setEditPost((prev) => !prev)}
-          className="flex gap-1 justify-center items-center absolute top-4 right-5"
+          className="flex gap-1 justify-center items-center absolute top-4 right-5 hover:bg-indigo-100 rounded-full px-2 py-1 transition-all duration-300"
         >
           <AiFillEdit />
           <span>Edit</span>
@@ -85,7 +85,7 @@ const PostItem = ({ postId, question, createdAt, isPublic }) => {
 
       {/* Confirm button */}
       {editPost && (
-        <div className=" flex items-center justify-between">
+        <div className=" flex items-center justify-between mt-8">
           {/* Delete btn */}
           <IconButton
             onClick={onDeletePostHandler}

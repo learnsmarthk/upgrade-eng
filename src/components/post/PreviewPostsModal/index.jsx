@@ -71,7 +71,7 @@ const PreviewPostModal = ({ setShowup }) => {
           </form>
 
           {/* Render Preview List */}
-          <div className="flex flex-col gap-5 overflow-auto h-[75%] rounded-lg p-5 innerShadow border-2 mb-10">
+          <div className="flex flex-col gap-5 overflow-auto h-[65%] rounded-lg p-5 innerShadow border-2 mb-10">
             {csvPostsArray.map(({ question, isPublic }) => (
               <PostPreviewItem
                 key={question}
