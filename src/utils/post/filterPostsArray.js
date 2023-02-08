@@ -10,7 +10,18 @@ const convertValueToBoolean = (dataArray) => {
 
 export const filterPostArray = (dataArray) => {
   let newDataArray = dataArray;
-  newDataArray.filter((item) => item.question && item.isPublic);
+
+  // Remove empty input
+  newDataArray = newDataArray.filter((item) => {
+    if (!item.question || !item.isPublic || item.question?.trim() === "") {
+      return;
+    } else {
+      return item;
+    }
+  });
+
+  // Convert isPublic string value to boolean
   newDataArray = convertValueToBoolean(newDataArray);
+
   return newDataArray;
 };

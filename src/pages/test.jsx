@@ -4,11 +4,11 @@ import papa from "papaparse";
 import { PostContext } from "@/context/post/context";
 
 import { filterPostArray } from "@/utils/post/filterPostsArray";
+import { PostPreviewItem } from "@/components";
 
 const TestPage = () => {
   const fileRef = useRef();
   const [inputCsv, setInputCsv] = useState(null);
-  const { onCreateMany } = useContext(PostContext);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -19,8 +19,7 @@ const TestPage = () => {
       complete: (result) => {
         setInputCsv(result.data);
         const filteredData = filterPostArray(result.data);
-        console.log(filteredData);
-        onCreateMany({ questionsArray: filteredData });
+        setInputCsv(filteredData);
       },
     });
   };
@@ -28,7 +27,15 @@ const TestPage = () => {
     <div>
       <form>
         <input ref={fileRef} type="file" accept=".csv" />
-        <div>{JSON.stringify(inputCsv)}</div>
+        <div>
+          {inputCsv?.map((item) => (
+            <PostPreviewItem
+              key={item.question}
+              question={item.question}
+              isPublic={item.isPublic}
+            />
+          ))}
+        </div>
         <Button onClick={submitHandler} type="button">
           Submit
         </Button>

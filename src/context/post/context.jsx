@@ -1,6 +1,8 @@
 import { createContext, useMemo, useState } from "react";
 import { useMutation } from "react-query";
 import { toast } from "react-hot-toast";
+import papa from "papaparse";
+import { filterPostArray } from "@/utils/post/filterPostsArray";
 
 import { updatePost, createPost, deletePost, createMany } from "@/api/post";
 import { useQueryClient } from "react-query";
@@ -10,11 +12,14 @@ export const PostContext = createContext({
   onUpdatePost: () => {},
   onCreatePost: () => {},
   onCreateMany: () => {},
+  setCsvPostsArray: () => {},
   onDeletePost: () => {},
+  setCsvPostsHandler: () => {},
   showNewPostForm: false,
   setShowNewPostForm: () => {},
   searchTerm: "",
   setSearchTerm: () => {},
+  csvPostsArray: [],
 });
 
 export const PostProvider = ({ children }) => {
@@ -24,6 +29,7 @@ export const PostProvider = ({ children }) => {
   // STATE MANAGEMENT
   const [showNewPostForm, setShowNewPostForm] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  const [csvPostsArray, setCsvPostsArray] = useState([]);
 
   // Update post
   const { mutate: onUpdatePost } = useMutation(updatePost, {
@@ -76,6 +82,19 @@ export const PostProvider = ({ children }) => {
     },
   });
 
+  // Upload Posts via CSV
+  const setCsvPostsHandler = (csvFilePath) => {
+    if (!csvFilePath) return;
+
+    papa.parse(csvFilePath, {
+      header: true,
+      complete: (result) => {
+        const filteredData = filterPostArray(result.data);
+        setCsvPostsArray(filteredData);
+      },
+    });
+  };
+
   // Export context values
   const postValue = useMemo(
     () => ({
@@ -87,6 +106,9 @@ export const PostProvider = ({ children }) => {
       searchTerm,
       setSearchTerm,
       onCreateMany,
+      csvPostsArray,
+      setCsvPostsHandler,
+      setCsvPostsArray,
     }),
     [
       onUpdatePost,
@@ -97,6 +119,8 @@ export const PostProvider = ({ children }) => {
       searchTerm,
       setSearchTerm,
       onCreateMany,
+      csvPostsArray,
+      setCsvPostsArray,
     ]
   );
 

@@ -1,6 +1,11 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
-import { ContentWrapper, Button } from "@/components";
+import {
+  ContentWrapper,
+  Button,
+  PreviewPostModal,
+  AddPostListBtn,
+} from "@/components";
 import { NewPostForm, PostList, TopBar } from "@/containers";
 import { usePost } from "@/hooks/usePost";
 import { PostContext } from "@/context/post/context";
@@ -11,6 +16,8 @@ import { getServerSession } from "next-auth";
 export default function Home() {
   const { showNewPostForm, setShowNewPostForm } = useContext(PostContext);
   const { posts, searchTerm, setSearchTerm, searchRef } = usePost();
+  const [showPreviewModal, setShowPreviewModal] = useState(false);
+  const [showDropdown, setShowDropdown] = useState(false);
 
   const onClickCreateBtn = () => {
     setShowNewPostForm(true);
@@ -27,18 +34,26 @@ export default function Home() {
         />
         {showNewPostForm && <NewPostForm />}
         <PostList posts={posts} />
+        {showPreviewModal && (
+          <PreviewPostModal
+            setShowup={setShowPreviewModal}
+            showup={showPreviewModal}
+          />
+        )}
 
         {/* Add post button */}
         {!showNewPostForm && (
-          <div className="fixed bottom-10 right-20 w-40 h-15">
-            <Button
-              styles="w-full h-full drop-shadow-xl"
-              onClick={onClickCreateBtn}
-            >
-              Add Post
-            </Button>
+          <div className="fixed bottom-20 right-20 ">
+            <AddPostListBtn
+              btn1Fn={onClickCreateBtn}
+              btn2Fn={setShowPreviewModal}
+              showDropdown={showDropdown}
+              setShowDropdown={setShowDropdown}
+            />
           </div>
         )}
+
+        <div className="fixed bottom-10 left-20 w-40 h-15"></div>
       </ContentWrapper>
     </main>
   );
