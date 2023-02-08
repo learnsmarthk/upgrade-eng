@@ -6,7 +6,7 @@ import queryKeys from "@/utils/query/queryKeys";
 
 const filterByTerm = (unfilteredData, searchTerm) => {
   return unfilteredData.filter((post) =>
-    post?.body?.toLowerCase()?.includes(searchTerm?.toLowerCase())
+    post?.question?.toLowerCase()?.includes(searchTerm?.toLowerCase())
   );
 };
 

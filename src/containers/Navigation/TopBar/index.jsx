@@ -1,12 +1,17 @@
 import React from "react";
 import { signOut } from "next-auth/react";
-import { Button, IconButton, Typography } from "@/components";
-import { RiLogoutCircleRLine } from "@/components/icons";
+import { Button, Typography, IconButton } from "@/components";
+import { RiLogoutCircleRLine, RxCross2 } from "@/components/icons";
 import Router from "next/router";
 
 const TopBar = ({ setSearchTerm, searchRef }) => {
   const onSubmitHandler = () => {
     setSearchTerm(searchRef.current.value);
+  };
+
+  const onClearHandler = () => {
+    setSearchTerm("");
+    searchRef.current.value = "";
   };
 
   const signOutHandler = async () => {
@@ -23,6 +28,9 @@ const TopBar = ({ setSearchTerm, searchRef }) => {
           className="w-full ring-2 rounded-sm py-2 px-3 outline-none focus:border-indigo-300 focus:ring-4 transition-all duration-150"
         />
 
+        <Button variant="outlined" type="button" onClick={onClearHandler}>
+          Clear
+        </Button>
         <Button type="button" onClick={onSubmitHandler}>
           Search
         </Button>
