@@ -51,12 +51,12 @@ const PostItem = ({ postId, question, createdAt, isPublic }) => {
       )}
 
       <div
-        className="relative flex flex-col  text-gray-700 p-5  my-2 border-2 border-gray-200 rounded-xl  hover:border-indigo-400 transition-all duration-300 bg-white shadow-md
+        className="relative flex flex-col  text-gray-700 p-8  my-2 border-2 border-gray-200 rounded-xl  hover:border-indigo-400 transition-all duration-300 bg-white shadow-md
     "
       >
         <div className="flex flex-col gap-3 ">
           <div className="flex-wrap mb-5">
-            <span className="sm:text-sm md:text-xl font-semibold mb-4">
+            <span className="block sm:text-sm md:text-xl font-semibold mb-2">
               Question:
             </span>
             {editPost ? (
