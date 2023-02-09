@@ -20,7 +20,7 @@ export const usePost = () => {
     [searchTerm]
   );
 
-  const { data: posts = fallback } = useQuery(
+  const { data: posts = fallback, isLoading } = useQuery(
     queryKeys.getAllPost,
     getAllPosts,
     {
@@ -28,5 +28,5 @@ export const usePost = () => {
     }
   );
 
-  return { posts, searchTerm, setSearchTerm, searchRef };
+  return { posts, searchTerm, setSearchTerm, searchRef, isLoading };
 };

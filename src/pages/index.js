@@ -10,7 +10,7 @@ import { getServerSession } from "next-auth";
 
 export default function Home() {
   const { showNewPostForm, setShowNewPostForm } = useContext(PostContext);
-  const { posts, searchTerm, setSearchTerm, searchRef } = usePost();
+  const { posts, searchTerm, setSearchTerm, searchRef, isLoading } = usePost();
   const [showPreviewModal, setShowPreviewModal] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
 
@@ -28,7 +28,7 @@ export default function Home() {
           setSearchTerm={setSearchTerm}
         />
         {showNewPostForm && <NewPostForm />}
-        <PostList posts={posts} />
+        <PostList posts={posts} isLoading={isLoading} />
         {showPreviewModal && (
           <PreviewPostModal
             setShowup={setShowPreviewModal}
