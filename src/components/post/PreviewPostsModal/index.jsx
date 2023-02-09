@@ -39,8 +39,6 @@ const PreviewPostModal = ({ setShowup }) => {
     setShowup(false);
   };
 
-  console.log(uploadedFile);
-
   return (
     <>
       <Overlay setShowUp={() => {}} />
