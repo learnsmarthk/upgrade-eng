@@ -6,6 +6,7 @@ import { RxCross2 } from "react-icons/rx";
 import { FiDownload } from "react-icons/fi";
 
 import { GrMultiple } from "react-icons/gr";
+import { HiOutlineLightBulb } from "react-icons/hi";
 
 import {
   BsCheckSquareFill,
@@ -28,4 +29,5 @@ export {
   BsFileEarmarkCheck,
   FiDownload,
   GrMultiple,
+  HiOutlineLightBulb,
 };
